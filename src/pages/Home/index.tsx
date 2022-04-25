@@ -1,0 +1,92 @@
+import React, { useRef, useState } from "react";
+
+import { debounce } from "lodash";
+import { useAddresses } from "../../hooks/useAddresses";
+import { useForecast } from "../../hooks/useForecast";
+import { Box, Card, ErrorInline, Input, Span } from "../../components";
+import { Heading } from "../../components/Heading";
+import { ForecastPeriod } from "./components/ForecastPeriod";
+import { WiDayCloudy } from "react-icons/wi";
+/**
+ * 300 S Las Vegas Blvd, Las Vegas, NV 89101, USA
+ * 501 E Lorene St, Payson, AZ 85541, USA
+ * @
+ */
+export const Home: React.FC = () => {
+  const [address, setAddress] = useState<string>("");
+
+  const { addresses, isLoading, error: addressError } = useAddresses(address);
+
+  const {
+    forecast,
+    error: forecastError,
+    isLoading: isLoadingForecast,
+  } = useForecast(addresses ? addresses[0] : undefined);
+
+  const debouncedAddressHandler = useRef(
+    debounce((newValue) => {
+      setAddress(newValue);
+    }, 500)
+  );
+
+  const addressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value) {
+      setAddress("");
+      return;
+    }
+
+    debouncedAddressHandler.current(e.target.value);
+  };
+
+  return (
+    <Box
+      marginTop={50}
+      display={"flex"}
+      flexDirection={"column"}
+      alignItems="center"
+    >
+      <WiDayCloudy size={120} />
+      <Heading mb="10px">Weather</Heading>
+      <Input
+        placeholder="start typing an address"
+        data-testid="input-address"
+        width={300}
+        onChange={addressHandler}
+      />
+
+      {addressError && (
+        <ErrorInline
+          containerProps={{
+            mt: 10,
+          }}
+          message="An error occurred while fetching your address"
+        />
+      )}
+
+      {forecastError && (
+        <ErrorInline
+          containerProps={{
+            mt: 10,
+          }}
+          message="An error occurred while fetching the forecast"
+        />
+      )}
+
+      {addresses?.length === 0 && (
+        <Card>
+          <Span>No results found</Span>
+        </Card>
+      )}
+
+      {(isLoading || isLoadingForecast) && (
+        <Card>
+          <Span>Loading...</Span>
+        </Card>
+      )}
+
+      <Box mt={15}>
+        <ForecastPeriod period={forecast?.periods} />
+      </Box>
+    </Box>
+  );
+};
