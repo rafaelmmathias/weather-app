@@ -7,6 +7,8 @@ import {
   flexbox,
   layout,
   grid,
+  backgroundImage,
+  backgroundSize,
 } from "styled-system";
 
 export const BoxContainer = styled.div`
@@ -17,4 +19,6 @@ export const BoxContainer = styled.div`
   ${flexbox}
   ${layout}
   ${grid}
+  ${backgroundImage}
+  ${backgroundSize}
 `;
