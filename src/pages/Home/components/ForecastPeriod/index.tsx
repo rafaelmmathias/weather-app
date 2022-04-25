@@ -4,14 +4,17 @@ import { GridpointForecastPeriod } from "../../../../services/weather/weather.ty
 import { ForecastPeriodItem } from "./components/ForecastPeriodItem";
 
 interface ForecastPeriodProps {
-  period?: GridpointForecastPeriod[];
+  period?: {
+    name: string;
+    value: GridpointForecastPeriod[];
+  }[];
 }
 
 export const ForecastPeriod: React.FC<ForecastPeriodProps> = ({ period }) => {
   return period && period?.length > 0 ? (
     <Box display="flex" flexWrap={"wrap"} justifyContent="center">
-      {period?.map((item) => (
-        <ForecastPeriodItem key={item.name} item={item} />
+      {period?.map((item, index) => (
+        <ForecastPeriodItem key={index} item={item} />
       ))}
     </Box>
   ) : null;

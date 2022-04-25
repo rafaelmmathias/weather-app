@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 import { debounce } from "lodash";
 import { useAddresses } from "../../hooks/useAddresses";
@@ -7,11 +7,8 @@ import { Box, Card, ErrorInline, Input, Span } from "../../components";
 import { Heading } from "../../components/Heading";
 import { ForecastPeriod } from "./components/ForecastPeriod";
 import { WiDayCloudy } from "react-icons/wi";
-/**
- * 300 S Las Vegas Blvd, Las Vegas, NV 89101, USA
- * 501 E Lorene St, Payson, AZ 85541, USA
- * @
- */
+import { groupForecastPeriodByDay } from "../../utils/utils";
+
 export const Home: React.FC = () => {
   const [address, setAddress] = useState<string>("");
 
@@ -22,6 +19,10 @@ export const Home: React.FC = () => {
     error: forecastError,
     isLoading: isLoadingForecast,
   } = useForecast(addresses ? addresses[0] : undefined);
+
+  const groupedForecast = useMemo(() => {
+    return groupForecastPeriodByDay(forecast?.periods);
+  }, [forecast]);
 
   const debouncedAddressHandler = useRef(
     debounce((newValue) => {
@@ -85,7 +86,7 @@ export const Home: React.FC = () => {
       )}
 
       <Box mt={15}>
-        <ForecastPeriod period={forecast?.periods} />
+        <ForecastPeriod period={groupedForecast} />
       </Box>
     </Box>
   );
