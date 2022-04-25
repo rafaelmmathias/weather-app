@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Card, Paragraph, Span } from "../../../../../../components";
-import { GridpointForecastPeriod } from "../../../../../../services/weather/weather.types";
+import { Box, Card, Paragraph, Span } from "components";
+import { GridpointForecastPeriod } from "services/weather/weather.types";
+
 import { ForeCastDayCardContainer } from "./forecastPeriodItem.styles";
 
 interface ForecastPeriodItemProps {
@@ -12,7 +13,7 @@ interface ForecastPeriodItemProps {
 export const ForecastPeriodItem: React.FC<ForecastPeriodItemProps> = ({
   item,
 }) => {
-  
+
   return (
     <Card backgroundColor="#00446A">
       <Box display={"flex"} flexWrap="wrap">

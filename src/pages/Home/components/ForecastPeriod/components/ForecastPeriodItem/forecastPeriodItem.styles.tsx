@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box } from "../../../../../../components";
+import { Box } from "components";
 
 export const ForeCastDayCardContainer = styled(Box)`
   background-size: cover;

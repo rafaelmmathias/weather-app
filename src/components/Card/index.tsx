@@ -5,6 +5,7 @@ import {
   LayoutProps,
   SpaceProps,
 } from "styled-system";
+
 import { CardContainer } from "./card.styles";
 
 export interface CardProps

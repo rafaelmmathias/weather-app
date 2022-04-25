@@ -1,9 +1,9 @@
-import { Address } from "./../services/geocoder/geocoding.types";
+import { Address } from "services/geocoder/geocoding.types";
 import useSWR from "swr";
 import {
   getPeriodForecast,
   getWeatherByLatLng,
-} from "../services/weather/weather";
+} from "services/weather/weather";
 
 export const useForecast = (address?: Address) => {
   const { data: weatherPoint, error: weatherPointError } = useSWR(

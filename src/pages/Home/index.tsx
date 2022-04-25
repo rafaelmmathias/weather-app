@@ -1,13 +1,13 @@
 import React, { useMemo, useRef, useState } from "react";
-
 import { debounce } from "lodash";
-import { useAddresses } from "../../hooks/useAddresses";
-import { useForecast } from "../../hooks/useForecast";
-import { Box, Card, ErrorInline, Input, Span } from "../../components";
-import { Heading } from "../../components/Heading";
-import { ForecastPeriod } from "./components/ForecastPeriod";
 import { WiDayCloudy } from "react-icons/wi";
-import { groupForecastPeriodByDay } from "../../utils/utils";
+
+import { Box, Card, ErrorInline, Input, Span, Heading } from "components";
+import { useAddresses } from "hooks/useAddresses";
+import { useForecast } from "hooks/useForecast";
+import { groupForecastPeriodByDay } from "utils/utils";
+
+import { ForecastPeriod } from "./components/ForecastPeriod";
 
 export const Home: React.FC = () => {
   const [address, setAddress] = useState<string>("");

@@ -1,6 +1,7 @@
 import React from "react";
-import { Box } from "../../../../components";
-import { GridpointForecastPeriod } from "../../../../services/weather/weather.types";
+import { Box } from "components";
+import { GridpointForecastPeriod } from "services/weather/weather.types";
+
 import { ForecastPeriodItem } from "./components/ForecastPeriodItem";
 
 interface ForecastPeriodProps {

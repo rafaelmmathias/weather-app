@@ -1,5 +1,5 @@
 import { groupBy } from "lodash";
-import { GridpointForecastPeriod } from "../services/weather/weather.types";
+import { GridpointForecastPeriod } from "services/weather/weather.types";
 
 const dayNames = [
   { name: "Today", matches: ["Today", "Tonight", "Overnight", "This Afternoon"] },
