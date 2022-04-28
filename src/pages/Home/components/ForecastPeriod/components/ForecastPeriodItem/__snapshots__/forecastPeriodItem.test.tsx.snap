@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expected to render correctly when have just 1 item 1`] = `
+<div
+  className="sc-bczRLJ dLEboF sc-gsnTZi gnXpTX"
+>
+  <div
+    className="sc-bczRLJ VvvOl"
+    display="flex"
+  >
+    <div
+      className="sc-bczRLJ cBQUGH sc-gKXOVf ictodb"
+      data-testid="forecast-period-item"
+    >
+      <div
+        className="sc-bczRLJ bRqHoP"
+        display="flex"
+      >
+        <div
+          className="sc-bczRLJ yfIxC"
+          display="flex"
+        >
+          <span
+            className="sc-hKMtZM bdEyhf"
+            color="#fff"
+            data-testid="forecast-card-item-name"
+            fontSize={20}
+          >
+            Today
+          </span>
+          <span
+            className="sc-hKMtZM iauWbn"
+            color="#fff"
+          >
+            Partly Sunny
+          </span>
+        </div>
+        <div
+          className="sc-bczRLJ bFjlUq"
+          display="flex"
+          width={90}
+        >
+          <span
+            className="sc-hKMtZM jfvJoT"
+            color="yellow"
+            data-testid="forecast-card-item-temperature"
+            fontSize={25}
+          >
+            98° F
+          </span>
+        </div>
+      </div>
+      <div
+        className="sc-bczRLJ jKunKD"
+        overflow="auto"
+      >
+        <p
+          className="sc-dkzDqf dMhlLK"
+          color="#fff"
+        >
+          Partly sunny. High near 98
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`expected to render correctly when have more than 1 1`] = `
+<div
+  className="sc-bczRLJ dLEboF sc-gsnTZi gnXpTX"
+>
+  <div
+    className="sc-bczRLJ VvvOl"
+    display="flex"
+  >
+    <div
+      className="sc-bczRLJ cBQUGH sc-gKXOVf ictodb"
+      data-testid="forecast-period-item"
+    >
+      <div
+        className="sc-bczRLJ bRqHoP"
+        display="flex"
+      >
+        <div
+          className="sc-bczRLJ yfIxC"
+          display="flex"
+        >
+          <span
+            className="sc-hKMtZM bdEyhf"
+            color="#fff"
+            data-testid="forecast-card-item-name"
+            fontSize={20}
+          >
+            Today
+          </span>
+          <span
+            className="sc-hKMtZM iauWbn"
+            color="#fff"
+          >
+            Partly Sunny
+          </span>
+        </div>
+        <div
+          className="sc-bczRLJ bFjlUq"
+          display="flex"
+          width={90}
+        >
+          <span
+            className="sc-hKMtZM jfvJoT"
+            color="yellow"
+            data-testid="forecast-card-item-temperature"
+            fontSize={25}
+          >
+            98° F
+          </span>
+        </div>
+      </div>
+      <div
+        className="sc-bczRLJ jKunKD"
+        overflow="auto"
+      >
+        <p
+          className="sc-dkzDqf dMhlLK"
+          color="#fff"
+        >
+          Partly sunny. High near 98
+        </p>
+      </div>
+    </div>
+    <div
+      className="sc-bczRLJ dNZAiX sc-gKXOVf ictodb"
+      data-testid="forecast-period-item"
+    >
+      <div
+        className="sc-bczRLJ bRqHoP"
+        display="flex"
+      >
+        <div
+          className="sc-bczRLJ yfIxC"
+          display="flex"
+        >
+          <span
+            className="sc-hKMtZM bdEyhf"
+            color="#fff"
+            data-testid="forecast-card-item-name"
+            fontSize={20}
+          >
+            Tonight
+          </span>
+          <span
+            className="sc-hKMtZM iauWbn"
+            color="#fff"
+          >
+            Partly Sunny
+          </span>
+        </div>
+        <div
+          className="sc-bczRLJ bFjlUq"
+          display="flex"
+          width={90}
+        >
+          <span
+            className="sc-hKMtZM jfvJoT"
+            color="yellow"
+            data-testid="forecast-card-item-temperature"
+            fontSize={25}
+          >
+            78° F
+          </span>
+        </div>
+      </div>
+      <div
+        className="sc-bczRLJ jKunKD"
+        overflow="auto"
+      >
+        <p
+          className="sc-dkzDqf dMhlLK"
+          color="#fff"
+        >
+          detailed 2
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -70,6 +70,7 @@ export const Home: React.FC = () => {
             mt: 10,
           }}
           message="An error occurred while fetching the forecast"
+          data-testid="forecast-error"
         />
       )}
 

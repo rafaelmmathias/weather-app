@@ -4,7 +4,7 @@ import { GridpointForecastPeriod } from "services/weather/weather.types";
 
 import { ForeCastDayCardContainer } from "./forecastPeriodItem.styles";
 
-interface ForecastPeriodItemProps {
+export interface ForecastPeriodItemProps {
   item: {
     name: string;
     value: GridpointForecastPeriod[];

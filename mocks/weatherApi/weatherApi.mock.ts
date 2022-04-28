@@ -98,6 +98,15 @@ export const WeatherPointResponseEmpty = {
   instance: "https://api.weather.gov/requests/4dd2fd",
 };
 
+export const WeatherPointResponseException = {
+  correlationId: "cff892f",
+  title: "Unexpected Problem",
+  type: "https://api.weather.gov/problems/UnexpectedProblem",
+  status: 500,
+  detail: "An unexpected problem has occurred.",
+  instance: "https://api.weather.gov/requests/cff892f",
+};
+
 export const ForecastResponseMock = {
   "@context": [
     "https://geojson.org/geojson-ld/geojson-context.jsonld",
