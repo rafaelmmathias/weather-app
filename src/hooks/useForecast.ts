@@ -5,7 +5,7 @@ import {
   getWeatherByLatLng,
 } from "services/weather/weather";
 
-export const useForecast = (address?: Address) => {
+export const useForecast = (address?: Address, numberOfDays?: number) => {
   const { data: weatherPoint, error: weatherPointError } = useSWR(
     address?.coordinates,
     getWeatherByLatLng,
@@ -16,8 +16,9 @@ export const useForecast = (address?: Address) => {
     }
   );
 
+  const forecastUrl = weatherPoint?.properties.forecast;
   const { data: forecastResponse, error } = useSWR(
-    weatherPoint?.properties.forecast,
+    forecastUrl ? [weatherPoint?.properties.forecast, numberOfDays] : undefined,
     getPeriodForecast
   );
 
