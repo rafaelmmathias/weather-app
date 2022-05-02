@@ -14,17 +14,20 @@ export const ErrorInline: React.FC<ErrorInlineProps> = ({
   title,
   message,
   containerProps,
+  ...rest
 }) => {
   return (
-    <Card padding={10} backgroundColor={"#FF4D4D"} {...containerProps}>
-      {title && (
-        <Box mb={10}>
-          <Heading>{title}</Heading>
+    <Box {...rest}>
+      <Card padding={10} backgroundColor={"#FF4D4D"} {...containerProps}>
+        {title && (
+          <Box mb={10}>
+            <Heading>{title}</Heading>
+          </Box>
+        )}
+        <Box>
+          <Paragraph color="#fff">{message}</Paragraph>
         </Box>
-      )}
-      <Box>
-        <Paragraph color="#fff">{message}</Paragraph>
-      </Box>
-    </Card>
+      </Card>
+    </Box>
   );
 };

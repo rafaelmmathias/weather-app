@@ -1,19 +1,17 @@
-import React, { useRef, useState } from "react";
-
+import React, { useMemo, useRef, useState } from "react";
 import { debounce } from "lodash";
-import { useAddresses } from "../../hooks/useAddresses";
-import { useForecast } from "../../hooks/useForecast";
-import { Box, Card, ErrorInline, Input, Span } from "../../components";
-import { Heading } from "../../components/Heading";
-import { ForecastPeriod } from "./components/ForecastPeriod";
 import { WiDayCloudy } from "react-icons/wi";
-/**
- * 300 S Las Vegas Blvd, Las Vegas, NV 89101, USA
- * 501 E Lorene St, Payson, AZ 85541, USA
- * @
- */
+
+import { Box, Card, ErrorInline, Input, Span, Heading } from "components";
+import { useAddresses } from "hooks/useAddresses";
+import { useForecast } from "hooks/useForecast";
+import { groupForecastPeriodByDay } from "utils/utils";
+
+import { ForecastPeriod } from "./components/ForecastPeriod";
+
 export const Home: React.FC = () => {
   const [address, setAddress] = useState<string>("");
+  const [numberOfDays, setNumberOfDays] = useState<number>(7);
 
   const { addresses, isLoading, error: addressError } = useAddresses(address);
 
@@ -21,7 +19,11 @@ export const Home: React.FC = () => {
     forecast,
     error: forecastError,
     isLoading: isLoadingForecast,
-  } = useForecast(addresses ? addresses[0] : undefined);
+  } = useForecast(addresses ? addresses[0] : undefined, numberOfDays);
+
+  const groupedForecast = useMemo(() => {
+    return groupForecastPeriodByDay(forecast?.periods);
+  }, [forecast]);
 
   const debouncedAddressHandler = useRef(
     debounce((newValue) => {
@@ -36,6 +38,11 @@ export const Home: React.FC = () => {
     }
 
     debouncedAddressHandler.current(e.target.value);
+  };
+
+  const onSelectNumberOfDays = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setNumberOfDays(Number(value));
   };
 
   return (
@@ -53,6 +60,15 @@ export const Home: React.FC = () => {
         width={300}
         onChange={addressHandler}
       />
+      <select onChange={onSelectNumberOfDays} value={numberOfDays}>
+        <option value={1}>1 day</option>
+        <option value={2}>2 days</option>
+        <option value={3}>3 days</option>
+        <option value={4}>4 days</option>
+        <option value={5}>5 days</option>
+        <option value={6}>6 days</option>
+        <option value={7}>7 days</option>
+      </select>
 
       {addressError && (
         <ErrorInline
@@ -69,6 +85,7 @@ export const Home: React.FC = () => {
             mt: 10,
           }}
           message="An error occurred while fetching the forecast"
+          data-testid="forecast-error"
         />
       )}
 
@@ -85,7 +102,7 @@ export const Home: React.FC = () => {
       )}
 
       <Box mt={15}>
-        <ForecastPeriod period={forecast?.periods} />
+        <ForecastPeriod period={groupedForecast} />
       </Box>
     </Box>
   );

@@ -10,9 +10,13 @@ interface HeadingContainerProps
   children: React.ReactNode;
 }
 
-export const Heading: React.FC<HeadingContainerProps> = ({
-  children,
-  ...rest
-}) => {
+interface IHeadingContainerProps
+  extends React.HTMLAttributes<HTMLHeadingElement> {
+  children: React.ReactNode;
+}
+
+type ParagraphProps = IHeadingContainerProps & HeadingContainerProps;
+
+export const Heading: React.FC<ParagraphProps> = ({ children, ...rest }) => {
   return <HeadingContainer {...rest}>{children}</HeadingContainer>;
 };

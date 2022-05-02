@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { getAddresses } from "../services/geocoder/geocoding";
+import { getAddresses } from "services/geocoder/geocoding";
 
 export const useAddresses = (address: string) => {  
   const { data, error, ...rest } = useSWR(address, getAddresses, {

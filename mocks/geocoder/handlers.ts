@@ -1,15 +1,22 @@
 import { emptyResult, withResults } from "./addresses.mock";
 import { rest } from "msw";
+export const GEOLOCATION_ENDPOINT = "http://localhost:3001/";
+
+export const getAddressWithResultsHandler = rest.get(
+  GEOLOCATION_ENDPOINT,
+  (req, res, ctx) => {
+    return res(ctx.json(withResults));
+  }
+);
+
+export const getAddressEmptyHandler = rest.get(
+  GEOLOCATION_ENDPOINT,
+  (req, res, ctx) => {
+    return res(ctx.json(emptyResult));
+  }
+);
 
 export const geocoderHandlers = [
-  // Handles a POST /login request
-  // rest.post('', null),
-  // Handles a GET /user request
-  rest.get("http://localhost:3001/", (req, res, ctx) => {
-    if (req.url.searchParams.get("address")?.includes("with result")) {
-      return res(ctx.json(withResults));
-    }
-
-    return res(ctx.json(emptyResult));
-  }),
+  getAddressWithResultsHandler,
+  getAddressEmptyHandler,
 ];

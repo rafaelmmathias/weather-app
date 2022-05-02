@@ -1,11 +1,18 @@
 import React from "react";
-import { BackgroundColorProps, LayoutProps, SpaceProps } from "styled-system";
+import {
+  BackgroundColorProps,
+  FlexboxProps,
+  LayoutProps,
+  SpaceProps,
+} from "styled-system";
+
 import { CardContainer } from "./card.styles";
 
 export interface CardProps
   extends BackgroundColorProps,
     SpaceProps,
-    LayoutProps {
+    LayoutProps,
+    FlexboxProps {
   children?: React.ReactNode;
 }
 

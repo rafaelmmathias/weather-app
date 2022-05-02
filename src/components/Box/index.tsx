@@ -1,7 +1,10 @@
 import React from "react";
 import {
+  BackgroundColorProps,
+  BackgroundImageProps,
+  BackgroundSizeProps,
   BorderProps,
-  ColorStyleProps,
+  ColorProps,
   FlexboxProps,
   GridProps,
   LayoutProps,
@@ -10,16 +13,23 @@ import {
 } from "styled-system";
 import { BoxContainer } from "./box.styles";
 
-interface BoxProps
-  extends ColorStyleProps,
+interface BoxStyledProps
+  extends ColorProps,
     SpaceProps,
     BorderProps,
     PositionProps,
     FlexboxProps,
     LayoutProps,
-    GridProps {
+    GridProps,
+    BackgroundImageProps,
+    BackgroundSizeProps,
+    BackgroundColorProps {}
+
+interface IBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
+
+type BoxProps = IBoxProps & BoxStyledProps;
 
 export const Box: React.FC<BoxProps> = ({ children, ...rest }) => {
   return <BoxContainer {...rest}>{children}</BoxContainer>;
