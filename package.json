@@ -29,7 +29,8 @@
     "start:web": "react-scripts start",
     "start": "concurrently --kill-others \"yarn start:api\" \"yarn start:web\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
