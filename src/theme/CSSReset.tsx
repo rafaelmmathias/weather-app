@@ -94,7 +94,7 @@ export const CSSReset = createGlobalStyle`
     input, select {
         vertical-align:middle;
     }
-    textarea:focus, input:focus{
+    textarea:focus, input:focus, select:focus{
     outline: none;
 }
    

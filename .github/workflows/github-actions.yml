@@ -9,4 +9,3 @@ jobs:
         run: yarn install
       - name: Run tests
         run: yarn test
-      - run: echo "🍏 This job's status is ${{ job.status }}."

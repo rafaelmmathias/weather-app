@@ -8,6 +8,7 @@ import { useForecast } from "hooks/useForecast";
 import { groupForecastPeriodByDay } from "utils/utils";
 
 import { ForecastPeriod } from "./components/ForecastPeriod";
+import { Select, SelectOptions } from "components/Select";
 
 export const Home: React.FC = () => {
   const [address, setAddress] = useState<string>("");
@@ -45,6 +46,23 @@ export const Home: React.FC = () => {
     setNumberOfDays(Number(value));
   };
 
+  const daysOptions = useMemo(
+    () =>
+      [
+        {
+          label: "1 day",
+          value: "1",
+        },
+        { label: "2 days", value: "2" },
+        { label: "3 days", value: "3" },
+        { label: "4 days", value: "4" },
+        { label: "5 days", value: "5" },
+        { label: "6 days", value: "6" },
+        { label: "7 days", value: "7" },
+      ] as SelectOptions,
+    []
+  );
+
   return (
     <Box
       marginTop={50}
@@ -54,21 +72,27 @@ export const Home: React.FC = () => {
     >
       <WiDayCloudy size={120} />
       <Heading mb="10px">Weather</Heading>
-      <Input
-        placeholder="start typing an address"
-        data-testid="input-address"
-        width={300}
-        onChange={addressHandler}
-      />
-      <select onChange={onSelectNumberOfDays} value={numberOfDays}>
-        <option value={1}>1 day</option>
-        <option value={2}>2 days</option>
-        <option value={3}>3 days</option>
-        <option value={4}>4 days</option>
-        <option value={5}>5 days</option>
-        <option value={6}>6 days</option>
-        <option value={7}>7 days</option>
-      </select>
+      <Box display={"flex"}>
+        <Box>
+          <Heading>Address</Heading>
+          <Input
+            placeholder="start typing an address"
+            data-testid="input-address"
+            width={300}
+            onChange={addressHandler}
+          />
+        </Box>
+
+        <Box ml={10}>
+          <Heading>Number of days</Heading>
+          <Select
+            id="number-of-days"
+            onChange={onSelectNumberOfDays}
+            value={numberOfDays}
+            items={daysOptions}
+          />
+        </Box>
+      </Box>
 
       {addressError && (
         <ErrorInline
