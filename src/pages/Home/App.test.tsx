@@ -118,7 +118,6 @@ describe("Testing rendering elements rules through the requests", () => {
     );
 
     const error = screen.getByTestId("forecast-error");
-
     expect(error).toBeInTheDocument();
   });
 
