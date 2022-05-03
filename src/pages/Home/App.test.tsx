@@ -1,9 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import * as timers from "timers";
 
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
-import { act } from "react-test-renderer";
 import { SWRConfig } from "swr";
 import { typeAddressAndAwaitForResult } from "tests/utils";
 
@@ -69,7 +67,42 @@ describe("Testing rendering elements rules through the requests", () => {
     const items = screen.getAllByTestId("forecast-period-item");
 
     expect(items.length).toBe(14);
-    jest.useRealTimers();
+  });
+
+  const options = [
+    { value: "1", expectedCardsLength: 2 },
+    { value: "2", expectedCardsLength: 4 },
+    { value: "3", expectedCardsLength: 6 },
+    { value: "4", expectedCardsLength: 8 },
+    { value: "5", expectedCardsLength: 10 },
+    { value: "6", expectedCardsLength: 12 },
+    { value: "7", expectedCardsLength: 14 },
+  ];
+
+  options.forEach((option) => {
+    it(`should render ${option.expectedCardsLength} cards when select the option ${option.value} days`, async () => {
+      server.use(getAddressWithResultsHandler);
+      renderHomeWithoutSWRCache();
+
+      const inputAddress = screen.getByTestId("input-address");
+      await typeAddressAndAwaitForResult(
+        inputAddress,
+        "random string",
+        "Tonight"
+      );
+
+      const items = screen.getAllByTestId("forecast-period-item");
+      expect(items.length).toBe(14);
+
+      const selectNumberOfDays = screen.getByTestId("number-of-days-select");
+
+      userEvent.selectOptions(selectNumberOfDays, [option.value]);
+
+      await waitFor(() => screen.findByText("Tonight"));
+
+      const itemsAfterSelection = screen.getAllByTestId("forecast-period-item");
+      expect(itemsAfterSelection.length).toBe(option.expectedCardsLength);
+    });
   });
 
   it("should render error card", async () => {

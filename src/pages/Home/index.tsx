@@ -87,6 +87,7 @@ export const Home: React.FC = () => {
           <Heading>Number of days</Heading>
           <Select
             id="number-of-days"
+            data-testid="number-of-days-select"
             onChange={onSelectNumberOfDays}
             value={numberOfDays}
             items={daysOptions}
