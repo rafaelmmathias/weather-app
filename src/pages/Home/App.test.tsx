@@ -8,6 +8,7 @@ import { Home } from ".";
 import {
   GEOLOCATION_ENDPOINT,
   getAddressEmptyHandler,
+  getAddressExceptionHandler,
   getAddressWithResultsHandler,
 } from "../../../mocks/geocoder/handlers";
 
@@ -104,7 +105,7 @@ describe("Testing rendering elements rules through the requests", () => {
     });
   });
 
-  it("should render error card", async () => {
+  it("should render forecast request error card", async () => {
     server.use(getWeatherPointHandlerException);
     renderHomeWithoutSWRCache();
 
@@ -117,6 +118,22 @@ describe("Testing rendering elements rules through the requests", () => {
     );
 
     const error = screen.getByTestId("forecast-error");
+    expect(error).toBeInTheDocument();
+  });
+
+  it("should render address request error card", async () => {
+    server.use(getAddressExceptionHandler);
+    renderHomeWithoutSWRCache();
+
+    const inputAddress = screen.getByTestId("input-address");
+
+    await typeAddressAndAwaitForResult(
+      inputAddress,
+      "random string",
+      "An error occurred while fetching your address"
+    );
+
+    const error = screen.getByTestId("forecast-address-error");
 
     expect(error).toBeInTheDocument();
   });

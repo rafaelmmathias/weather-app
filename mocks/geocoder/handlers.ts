@@ -16,7 +16,15 @@ export const getAddressEmptyHandler = rest.get(
   }
 );
 
+export const getAddressExceptionHandler = rest.get(
+  GEOLOCATION_ENDPOINT,
+  (req, res, ctx) => {
+    return res(ctx.status(500), ctx.json({}));
+  }
+);
+
 export const geocoderHandlers = [
   getAddressWithResultsHandler,
   getAddressEmptyHandler,
+  getAddressExceptionHandler
 ];
