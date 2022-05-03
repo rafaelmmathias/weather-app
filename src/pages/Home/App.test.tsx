@@ -2,8 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
-import { SWRConfig } from "swr";
-import { typeAddressAndAwaitForResult } from "tests/utils";
+import { SwrWithoutCache, typeAddressAndAwaitForResult } from "tests/utils";
 
 import { Home } from ".";
 import {
@@ -23,9 +22,9 @@ import {
  */
 const renderHomeWithoutSWRCache = () => {
   render(
-    <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
+    <SwrWithoutCache>
       <Home />
-    </SWRConfig>
+    </SwrWithoutCache>
   );
 };
 
