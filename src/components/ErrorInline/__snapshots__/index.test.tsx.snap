@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - ErrorInline should render the title and message 1`] = `
+<div
+  className="sc-bczRLJ eFUIdW"
+>
+  <div
+    className="sc-bczRLJ bpeZoH sc-gsnTZi bzWLFp"
+  >
+    <div
+      className="sc-bczRLJ cDQXru"
+    >
+      <h1
+        className="sc-dkzDqf hPtMBP"
+      >
+        Error inline title
+      </h1>
+    </div>
+    <div
+      className="sc-bczRLJ eFUIdW"
+    >
+      <p
+        className="sc-eCYdqJ fhRWxa"
+        color="#fff"
+      >
+        message error
+      </p>
+    </div>
+  </div>
+</div>
+`;

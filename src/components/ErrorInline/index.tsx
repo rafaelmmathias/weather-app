@@ -7,7 +7,7 @@ import { Paragraph } from "../Typography";
 interface ErrorInlineProps {
   title?: string;
   message: string;
-  containerProps: CardProps;
+  containerProps?: CardProps;
 }
 
 export const ErrorInline: React.FC<ErrorInlineProps> = ({

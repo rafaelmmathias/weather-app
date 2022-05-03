@@ -1,14 +1,6 @@
-name: Unit tests
+name: unit tests
 on: [push]
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: install modules
-        run: yarn install
-      - name: Run tests
-        run: yarn test
   coverage:
         permissions:
           checks: write

@@ -101,6 +101,7 @@ export const Home: React.FC = () => {
             mt: 10,
           }}
           message="An error occurred while fetching your address"
+          data-testid="forecast-address-error"
         />
       )}
 
